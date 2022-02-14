@@ -9,7 +9,7 @@ screens = [
             [
                 widget.Sep(padding=3, linewidth=0, background="#2f343f"),
                 widget.Image(
-                    filename="~/.config/qtile/eos-c.png",
+                    filename="~/.config/qtile/python-white.png",
                     margin=3,
                     background="#2f343f",
                     mouse_callbacks={
