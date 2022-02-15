@@ -51,7 +51,11 @@ screens = [
                     background="#2f343f",
                 ),
                 widget.Systray(icon_size=20),
-                widget.DF(partition="/home", visible_on_warn=False),
+                widget.DF(
+                    partition="/home",
+                    #visible_on_warn=False,
+                    format=" {p} {uf}{m}|{r:.0f}%",
+                ),
                 widget.CryptoTicker(crypto="BTC", currency="USD"),
                 # widget.CryptoTicker(crypto="ADA", currency="USD"),
                 widget.TextBox(text="", padding=0, fontsize=28, foreground="#2f343f"),
@@ -85,7 +89,7 @@ screens = [
                     foreground="#e39378",
                 ),
             ],
-            18,  # height in px
+            20,  # height in px
             background="#404552",  # background color
         ),
     ),
