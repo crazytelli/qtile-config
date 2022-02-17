@@ -57,7 +57,7 @@ screens = [
                     format=" {p} {uf}{m}|{r:.0f}%",
                 ),
                 widget.CryptoTicker(crypto="BTC", currency="USD"),
-                # widget.CryptoTicker(crypto="ADA", currency="USD"),
+                widget.CryptoTicker(crypto="ADA", currency="USD"),
                 widget.TextBox(text="", padding=0, fontsize=28, foreground="#2f343f"),
                 volume,
                 widget.TextBox(

@@ -74,4 +74,16 @@ keys = [
     # Ajuste de brilho da tela.
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 20")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 20")),
+    Key(
+        [mod, "shift"],
+        "x",
+        lazy.spawn("slock"),
+        desc="Locks the screen with slock - suckless.org",
+    ),
+    Key(
+        [mod, "shift"],
+        "z",
+        lazy.spawn("systemctl suspend"),
+        desc="Suspends the computer screen with slock and a systemd service at /etc/systemd/system/slock@.service",
+    ),
 ]
