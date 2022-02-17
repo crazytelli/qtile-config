@@ -75,7 +75,7 @@ keys = [
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 20")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 20")),
     Key(
-        [mod, "shift"],
+        [mod],
         "x",
         lazy.spawn("slock"),
         desc="Locks the screen with slock - suckless.org",
