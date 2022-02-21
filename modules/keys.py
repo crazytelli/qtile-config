@@ -1,8 +1,14 @@
 from libqtile.lazy import lazy
-from libqtile.config import Key
+from libqtile.config import Key, EzKey
 from libqtile.widget import Backlight
-# from libqtile.bar.Bar
 
+# using EzKey
+# modifier_keys = {
+#    'M': 'mod4',
+#    'A': 'mod1',
+#    'S': 'shift',
+#    'C': 'control',
+# }
 
 mod = "mod4"
 terminal = "alacritty"
@@ -94,5 +100,5 @@ keys = [
         lazy.spawn("systemctl suspend"),
         desc="Suspends the computer screen with slock and a systemd service at /etc/systemd/system/slock@.service",
     ),
-    Key([mod], "b", lazy.hide_show_bar(), desc="Hides the bar"),
+    EzKey("M-b", lazy.hide_show_bar(), desc="Toggle hide/show the bar"),
 ]
