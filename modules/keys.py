@@ -1,10 +1,12 @@
 from libqtile.lazy import lazy
 from libqtile.config import Key
 from libqtile.widget import Backlight
+# from libqtile.bar.Bar
+
 
 mod = "mod4"
-# terminal = "alacritty"
-terminal = "xfce4-terminal"
+terminal = "alacritty"
+# terminal = "xfce4-terminal"
 
 keys = [
     # Switch between windows
@@ -92,4 +94,5 @@ keys = [
         lazy.spawn("systemctl suspend"),
         desc="Suspends the computer screen with slock and a systemd service at /etc/systemd/system/slock@.service",
     ),
+    Key([mod], "b", lazy.hide_show_bar(), desc="Hides the bar"),
 ]
