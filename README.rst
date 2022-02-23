@@ -5,15 +5,16 @@ Qtile Configuration
 Main config
 -----------
 
-Initial configuration is based on the default endeavour OS provided config.
+My qtile configuration based on the default provided by qtile and the one from EndeavourOS.
 
-My modifications will be on a secondary branch.
+I'm still figuring it out...
+
 
 
 
 TODO
 ----
 
-- Organize the modules folder.
-- Rewrite some functions for better understanding.
+- Create a colors.py file to be imported and ease the color selection
+- Check for unused code
 - Rice, baby :)
