@@ -107,7 +107,9 @@ keys = [
         lazy.spawn(f"{terminal} -e ranger"),
         desc="Launches Ranger file manager",
     ),
-    Key([mod, "shift"], "p", lazy.spawn("pcmanfm"), desc="Launches pcmanfm file manager"),
+    Key(
+        [mod, "shift"], "p", lazy.spawn("pcmanfm"), desc="Launches pcmanfm file manager"
+    ),
 ]
 
 # Groups config
@@ -156,6 +158,7 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
+        Match(wm_name="win0"), # Pycharm launching screen
     ]
 )
 
