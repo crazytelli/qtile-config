@@ -1,7 +1,10 @@
-from libqtile import bar
-from .widgets import *
+from libqtile import bar, widget, qtile
 from libqtile.config import Screen
+from libqtile.utils import guess_terminal
 import os
+
+
+terminal = guess_terminal()
 
 screens = [
     Screen(
@@ -53,13 +56,12 @@ screens = [
                 widget.Systray(icon_size=20),
                 widget.DF(
                     partition="/home",
-                    #visible_on_warn=False,
+                    # visible_on_warn=False,
                     format=" {p} {uf}{m}|{r:.0f}%",
                 ),
                 widget.CryptoTicker(crypto="BTC", currency="USD"),
                 widget.CryptoTicker(crypto="ADA", currency="USD"),
                 widget.TextBox(text="", padding=0, fontsize=28, foreground="#2f343f"),
-                volume,
                 widget.TextBox(
                     text="",
                     padding=0,
@@ -68,7 +70,8 @@ screens = [
                 ),
                 widget.TextBox(text="", padding=0, fontsize=28, foreground="#2f343f"),
                 widget.Clock(
-                    format=" %d-%m-%Y %a %H:%M",
+                    format=" %d-%m-%Y %a %H:%M",
+                    # format=" %d-%m-%Y %a %H:%M",
                     background="#2f343f",
                     foreground="#9bd689",
                 ),
