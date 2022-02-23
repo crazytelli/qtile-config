@@ -1,6 +1,5 @@
 from libqtile.lazy import lazy
 from libqtile.config import Key, EzKey
-from libqtile.widget import Backlight
 
 # using EzKey
 # modifier_keys = {
