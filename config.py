@@ -10,6 +10,11 @@ from libqtile import hook
 import subprocess
 import os
 
+# Theme Choice
+from themes import vault
+
+colors = vault.init_colors()
+
 # from myscreens import screens
 
 mod = "mod4"
@@ -134,10 +139,25 @@ for i in groups:
         ]
     )
 
+
+def init_layout_theme():
+    return {
+        "border_width": 2,
+        "margin": 6,
+        "border_focus": colors[5],
+        "border_normal": colors[13],
+    }
+
+
+layout_theme = init_layout_theme()
+
+
 # Layouts config
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2),
+    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2),
+    layout.Columns(**layout_theme),
     layout.Max(),
+    layout.Floating(**layout_theme, fullscreen_border_width=3, max_border_width=3),
 ]
 
 widget_defaults = dict(
@@ -158,7 +178,7 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        Match(title="win0"), # Pycharm launching screen
+        Match(title="win0"),  # Pycharm launching screen
     ]
 )
 
@@ -167,28 +187,31 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(),
+                widget.GroupBox(
+                    highlight_method="line",
+                    this_screen_border=colors[4],
+                    this_current_screen_border=colors[3],
+                    active=colors[10],
+                    inactive=colors[2],
+                    background=colors[13],
+                    hide_unused=False,
+                ),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                # widget.Chord( chords_colors={ "launch": (colors[3],colors[10]), }, name_transform=lambda name: name.upper(),),
                 widget.CurrentLayoutIcon(scale=0.65),
                 widget.CheckUpdates(
                     update_interval=1800,
                     distro="Arch_yay",
                     display_format="{updates} Updates",
-                    foreground="#ffffff",
+                    foreground=colors[4],
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(terminal + " -e yay -Syu")
                     },
-                    background="#2f343f",
+                    background=colors[14],
                 ),
                 widget.Systray(),
-                widget.Clock(format="%d-%m-%Y %a %H:%M"),
+                widget.Clock(format="%d-%m-%Y %a %H:%M", foreground=colors[15]),
                 widget.Battery(
                     battery=1,
                     charge_char="",
@@ -197,16 +220,17 @@ screens = [
                     full_char="",
                     unknown_char="",
                     font="JetBrains Mono",
-                    foreground="#ffffff",
+                    foreground=colors[5],
+                    background=colors[13],
                     format="{char} {percent:2.0%}",
                     low_percentage=0.2,
                     low_foreground="#FF0000",
                     show_short_text=False,
-                    hide_threshold=0.8,
+                    # hide_threshold=0.8,
                 ),
             ],
             24,
-            # background="#404552",
+            background=colors[13],
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=[ "ff00ff", "000000", "ff00ff", "000000", ],  # Borders are magenta
         ),
