@@ -157,7 +157,7 @@ layouts = [
     # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2),
     layout.Columns(**layout_theme),
     layout.Max(),
-    #layout.Floating(**layout_theme, fullscreen_border_width=3, max_border_width=3),
+    # layout.Floating(**layout_theme, fullscreen_border_width=3, max_border_width=3),
 ]
 
 widget_defaults = dict(
@@ -196,8 +196,8 @@ screens = [
                     background=colors[13],
                     hide_unused=False,
                 ),
-                widget.Prompt(),
-                widget.WindowName(),
+                widget.Prompt(font="Hack Nerd Font Bold"),
+                widget.WindowName(font="Hack Nerd Font Bold"),
                 # widget.Chord( chords_colors={ "launch": (colors[3],colors[10]), }, name_transform=lambda name: name.upper(),),
                 widget.CurrentLayoutIcon(scale=0.65),
                 widget.CheckUpdates(
@@ -211,7 +211,19 @@ screens = [
                     background=colors[14],
                 ),
                 widget.Systray(),
-                widget.Clock(format="%d-%m-%Y %a %H:%M", foreground=colors[15]),
+                widget.Memory(
+                    font="Hack Nerd Font Bold",
+                    fontsize=12,
+                    background=colors[13],
+                    foreground=colors[1],
+                    format="{MemUsed: .0f} MB ",
+                    padding_y=4,
+                ),
+                widget.Clock(
+                    format="%d-%m-%Y %a %H:%M",
+                    foreground=colors[15],
+                    font="Hack Nerd Font Bold",
+                ),
                 widget.Battery(
                     battery=1,
                     charge_char="",
@@ -219,7 +231,7 @@ screens = [
                     empty_char="",
                     full_char="",
                     unknown_char="",
-                    font="JetBrains Mono",
+                    font="Hack Nerd Font Bold",
                     foreground=colors[5],
                     background=colors[13],
                     format="{char} {percent:2.0%}",
