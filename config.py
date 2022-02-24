@@ -142,9 +142,9 @@ for i in groups:
 
 def init_layout_theme():
     return {
-        "border_width": 2,
+        "border_width": 3,
         "margin": 6,
-        "border_focus": colors[5],
+        "border_focus": colors[1],
         "border_normal": colors[13],
     }
 
@@ -157,7 +157,7 @@ layouts = [
     # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2),
     layout.Columns(**layout_theme),
     layout.Max(),
-    layout.Floating(**layout_theme, fullscreen_border_width=3, max_border_width=3),
+    #layout.Floating(**layout_theme, fullscreen_border_width=3, max_border_width=3),
 ]
 
 widget_defaults = dict(
