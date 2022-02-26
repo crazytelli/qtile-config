@@ -11,9 +11,24 @@ import subprocess
 import os
 
 # Theme Choice
-from themes import vault
+# from themes import vault
 
-colors = vault.init_colors()
+# colors = vault.init_colors()
+
+# Using pywal to set qtile's colorschemes:
+colors = []
+cache = os.path.expanduser("~/.cache/wal/colors")
+
+
+def load_colors(cache):
+    with open(cache, "r") as file:
+        for _ in range(16):
+            colors.append(file.readline().strip())
+    colors.append("#ffffff")
+    lazy.reload()
+
+
+load_colors(cache)
 
 # from myscreens import screens
 
@@ -143,7 +158,7 @@ for i in groups:
 def init_layout_theme():
     return {
         "border_width": 3,
-        "margin": 6,
+        "margin": 0,
         "border_focus": colors[1],
         "border_normal": colors[13],
     }
@@ -211,6 +226,18 @@ screens = [
                     background=colors[14],
                 ),
                 widget.Systray(),
+                widget.CryptoTicker(
+                    crypto="BTC",
+                    currency="USD",
+                    font="Hack Nerd Font Bold",
+                    foreground=colors[0],
+                ),
+                widget.CryptoTicker(
+                    crypto="ADA",
+                    currency="USD",
+                    font="Hack Nerd Font Bold",
+                    foreground=colors[0],
+                ),
                 widget.Memory(
                     font="Hack Nerd Font Bold",
                     fontsize=12,
@@ -243,6 +270,7 @@ screens = [
             ],
             24,
             background=colors[13],
+            opacity=0.75,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=[ "ff00ff", "000000", "ff00ff", "000000", ],  # Borders are magenta
         ),
