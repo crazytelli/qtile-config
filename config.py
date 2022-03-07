@@ -11,24 +11,24 @@ import subprocess
 import os
 
 # Theme Choice
-# from themes import vault
+from themes import vault
 
-# colors = vault.init_colors()
+colors = vault.init_colors()
 
-# Using pywal to set qtile's colorschemes:
-colors = []
-cache = os.path.expanduser("~/.cache/wal/colors")
-
-
-def load_colors(cache):
-    with open(cache, "r") as file:
-        for _ in range(16):
-            colors.append(file.readline().strip())
-    colors.append("#ffffff")
-    lazy.reload()
-
-
-load_colors(cache)
+# # Using pywal to set qtile's colorschemes:
+# colors = []
+# cache = os.path.expanduser("~/.cache/wal/colors")
+#
+#
+# def load_colors(cache):
+#     with open(cache, "r") as file:
+#         for _ in range(16):
+#             colors.append(file.readline().strip())
+#     colors.append("#ffffff")
+#     lazy.reload()
+#
+#
+# load_colors(cache)
 
 # from myscreens import screens
 
@@ -64,7 +64,7 @@ keys = [
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod], "b", lazy.hide_show_bar(), desc="Toggle hide/show the bar"),
     Key(
-        [mod],
+        [mod, "shift"],
         "f",
         lazy.window.toggle_floating(),
         desc="Toggle floating",
@@ -82,6 +82,7 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "m", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -184,6 +185,7 @@ extension_defaults = widget_defaults.copy()
 
 
 floating_layout = layout.Floating(
+    **layout_theme,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
@@ -194,7 +196,8 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="win0"),  # Pycharm launching screen
-    ]
+        Match(title="Python Turtle Graphics"),  # Python Graphics Tk module
+    ],
 )
 
 
@@ -226,23 +229,11 @@ screens = [
                     background=colors[14],
                 ),
                 widget.Systray(),
-                widget.CryptoTicker(
-                    crypto="BTC",
-                    currency="USD",
-                    font="Hack Nerd Font Bold",
-                    foreground=colors[0],
-                ),
-                widget.CryptoTicker(
-                    crypto="ADA",
-                    currency="USD",
-                    font="Hack Nerd Font Bold",
-                    foreground=colors[0],
-                ),
                 widget.Memory(
                     font="Hack Nerd Font Bold",
                     fontsize=12,
                     background=colors[13],
-                    foreground=colors[1],
+                    foreground=colors[15],
                     format="{MemUsed: .0f} MB ",
                     padding_y=4,
                 ),
@@ -259,7 +250,7 @@ screens = [
                     full_char="",
                     unknown_char="",
                     font="Hack Nerd Font Bold",
-                    foreground=colors[5],
+                    foreground=colors[7],
                     background=colors[13],
                     format="{char} {percent:2.0%}",
                     low_percentage=0.2,
