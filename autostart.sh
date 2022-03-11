@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Setting Background image
-feh --bg-scale --randomize /home/crazytelli/pictures/wallpapers/*.jpg
+feh --bg-scale /home/crazytelli/pictures/wallpapers/0uttnZl.jpg
 
 # Using pywal to set colorscheme matching the image
 # wal -i /home/crazytelli/pictures/wallpapers/c4hLdu3.jpg

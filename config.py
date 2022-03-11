@@ -11,9 +11,9 @@ import subprocess
 import os
 
 # Theme Choice
-from themes import vault
+from themes import dracula
 
-colors = vault.init_colors()
+colors = dracula.init_colors()
 
 # # Using pywal to set qtile's colorschemes:
 # colors = []
@@ -170,10 +170,8 @@ layout_theme = init_layout_theme()
 
 # Layouts config
 layouts = [
-    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=2),
     layout.Columns(**layout_theme),
     layout.Max(),
-    # layout.Floating(**layout_theme, fullscreen_border_width=3, max_border_width=3),
 ]
 
 widget_defaults = dict(
@@ -208,13 +206,15 @@ screens = [
                 widget.GroupBox(
                     highlight_method="line",
                     this_screen_border=colors[4],
-                    this_current_screen_border=colors[3],
+                    this_current_screen_border=colors[11],
                     active=colors[10],
-                    inactive=colors[2],
+                    inactive=colors[1],
                     background=colors[13],
                     hide_unused=False,
                 ),
+                widget.TextBox(text="", padding=0, fontsize=20, foreground="#2f343f"),
                 widget.Prompt(font="Hack Nerd Font Bold"),
+                widget.Spacer(length=10),
                 widget.WindowName(font="Hack Nerd Font Bold"),
                 # widget.Chord( chords_colors={ "launch": (colors[3],colors[10]), }, name_transform=lambda name: name.upper(),),
                 widget.CurrentLayoutIcon(scale=0.65),
@@ -226,22 +226,37 @@ screens = [
                     mouse_callbacks={
                         "Button1": lambda: qtile.cmd_spawn(terminal + " -e yay -Syu")
                     },
-                    background=colors[14],
+                    background=colors[13],
                 ),
                 widget.Systray(),
+                # widget.TextBox(
+                #    text="",
+                #    font="Ubuntu Mono",
+                #    background=colors[2],
+                #    foreground=colors[4],
+                #    padding=0,
+                #    fontsize=37,
+                # ),
+                widget.Spacer(length=5),
+                widget.TextBox(text="", padding=0, fontsize=20, foreground="#2f343f"),
+                widget.TextBox(text="", padding=0, fontsize=20, foreground="#2f343f"),
                 widget.Memory(
                     font="Hack Nerd Font Bold",
                     fontsize=12,
-                    background=colors[13],
-                    foreground=colors[15],
+                    # background=colors[13],
+                    foreground=colors[6],
                     format="{MemUsed: .0f} MB ",
                     padding_y=4,
                 ),
+                widget.TextBox(text="", padding=0, fontsize=20, foreground="#2f343f"),
+                widget.TextBox(text="", padding=0, fontsize=20, foreground="#2f343f"),
+                # widget.TextBox(text="", padding=0, fontsize=20, foreground="#2f343f"),
                 widget.Clock(
                     format="%d-%m-%Y %a %H:%M",
                     foreground=colors[15],
                     font="Hack Nerd Font Bold",
                 ),
+                widget.TextBox(text="", padding=0, fontsize=20, foreground="#2f343f"),
                 widget.Battery(
                     battery=1,
                     charge_char="",
@@ -251,7 +266,7 @@ screens = [
                     unknown_char="",
                     font="Hack Nerd Font Bold",
                     foreground=colors[7],
-                    background=colors[13],
+                    # background=colors[14],
                     format="{char} {percent:2.0%}",
                     low_percentage=0.2,
                     low_foreground="#FF0000",
@@ -261,7 +276,7 @@ screens = [
             ],
             24,
             background=colors[13],
-            opacity=0.75,
+            # opacity=0.75,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=[ "ff00ff", "000000", "ff00ff", "000000", ],  # Borders are magenta
         ),
@@ -281,21 +296,6 @@ mouse = [
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
-
-# colors = [
-#     ["#282c34", "#282c34"],  # panel background
-#     ["#3d3f4b", "#434758"],  # background for current screen tab
-#     ["#ffffff", "#ffffff"],  # font color for group names
-#     ["#ff5555", "#ff5555"],  # border line color for current tab
-#     [
-#         "#74438f",
-#         "#74438f",
-#     ],  # border line color for 'other tabs' and color for 'odd widgets'
-#     ["#4f76c7", "#4f76c7"],  # color for the 'even widgets'
-#     ["#e1acff", "#e1acff"],  # window name
-#     ["#ecbbfb", "#ecbbfb"],  # backbround for inactive screens
-# ]
-
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
